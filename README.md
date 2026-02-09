@@ -1,8 +1,8 @@
-# 💘 AI Date Planner Assistant
+#  AI Date Planner Assistant
 
 A multi-agent GenAI system that plans complete dates using live APIs (Google Places & OpenWeather). Perfect for demonstrating real-world AI capabilities with practical applications.
 
-## 🎯 What It Does
+##  What It Does
 
 The AI Date Planner takes natural language requests and generates personalized date plans with:
 - **Restaurant recommendations** based on location, budget, and preferences
@@ -24,29 +24,29 @@ The AI Date Planner takes natural language requests and generates personalized d
 - Suggested timing
 - Complete date plan summary
 
-## 🧠 Multi-Agent Architecture
+##  Multi-Agent Architecture
 
 The system uses three specialized AI agents working in sequence:
 
-### 1️⃣ **Planner Agent**
+###  **Planner Agent**
 - Understands user intent using OpenAI GPT
 - Extracts structured data: city, budget, date type, timing
 - Outputs JSON with parameters for execution
 
-### 2️⃣ **Executor Agent**
+###  **Executor Agent**
 - Orchestrates API calls based on planner output
 - Fetches real-time data from:
   - **Google Places API** (restaurants, ratings, prices)
   - **OpenWeather API** (weather forecasts)
 - Collects and formats results
 
-### 3️⃣ **Verifier Agent**
+###  **Verifier Agent**
 - Validates recommendations against constraints
 - Filters inappropriate suggestions (e.g., outdoor venues during rain)
 - Uses AI to generate coherent, personalized date plans
 - Ensures budget compliance and weather suitability
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Python 3.8+**
 - **OpenAI API** (GPT-4o-mini for cost-effectiveness)
@@ -54,7 +54,7 @@ The system uses three specialized AI agents working in sequence:
 - **OpenWeather API** (weather forecasts)
 - **Libraries:** `openai`, `requests`, `python-dotenv`
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 genai-date-planner/
@@ -77,7 +77,7 @@ genai-date-planner/
 └── README.md               # This file
 ```
 
-## 🚀 Setup Instructions
+##  Setup Instructions
 
 ### 1. Clone or Download the Project
 
@@ -138,7 +138,7 @@ The web interface will open automatically in your browser at `http://localhost:8
 
 > **Recommended:** Use the Streamlit web interface for a better visual experience with interactive components and real-time updates!
 
-## 💡 Example Prompts
+##  Example Prompts
 
 Try these prompts to test the system:
 
@@ -154,9 +154,9 @@ Try these prompts to test the system:
 4. **"Find a budget-friendly first date in Pune"**
    - Tests budget optimization and casual venue search
 
-## 🔗 Required Third-Party APIs (Easy & Stable)
+##  Required Third-Party APIs (Easy & Stable)
 
-**1️⃣ Google Places API (New)**
+** Google Places API (New)**
 
 Used for:
 - Restaurant search using searchText endpoint
@@ -164,7 +164,7 @@ Used for:
 - Price level information
 - Current opening hours
 
-**2️⃣ OpenWeather API**
+** OpenWeather API**
 
 Used for:
 - Weather forecast
@@ -175,7 +175,7 @@ Both are:
 - Easy to integrate
 - Reliable
 
-## 🧪 Example Prompts (README ready)
+## Execution Flow
 
 ```
 User Input
@@ -195,19 +195,19 @@ User Input
 Final Date Plan
 ```
 
-## ✅ Features Checklist
+##  Features Checklist
 
-- ✅ **Multi-agent architecture** (Planner, Executor, Verifier)
-- ✅ **Tool calling** (Google Places API, OpenWeather API)
-- ✅ **Real-time data** (live restaurant and weather info)
-- ✅ **Natural language processing** (OpenAI GPT)
-- ✅ **Budget validation** (filters by price level)
-- ✅ **Weather-aware planning** (indoor/outdoor recommendations)
-- ✅ **Structured outputs** (JSON for agent communication)
-- ✅ **Error handling** (graceful degradation)
-- ✅ **User-friendly interface** (clear console output)
+-  **Multi-agent architecture** (Planner, Executor, Verifier)
+-  **Tool calling** (Google Places API, OpenWeather API)
+-  **Real-time data** (live restaurant and weather info)
+-  **Natural language processing** (OpenAI GPT)
+-  **Budget validation** (filters by price level)
+-  **Weather-aware planning** (indoor/outdoor recommendations)
+-  **Structured outputs** (JSON for agent communication)
+-  **Error handling** (graceful degradation)
+-  **User-friendly interface** (clear console output)
 
-## 🎓 Why This Project?
+##  Why This Project?
 
 This project demonstrates:
 
@@ -217,14 +217,14 @@ This project demonstrates:
 4. **Domain relevance** - Perfect for dating/social apps
 5. **Production-ready patterns** - Error handling, validation, modularity
 
-## 🔒 Security Notes
+##  Security Notes
 
 - **Never commit `.env`** - Add to `.gitignore`
 - **Use environment variables** - Keep API keys secure
 - **Rotate keys regularly** - Especially for production use
 - **Monitor API usage** - Set up billing alerts
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 **"Error initializing agents"**
 - Check that all API keys are set in `.env`
@@ -242,16 +242,4 @@ This project demonstrates:
 - Run `pip install -r requirements.txt`
 - Ensure Python 3.8+ is installed
 
-## 📝 License
 
-This project is open source and available for educational purposes.
-
-## 🙏 Acknowledgments
-
-- OpenAI for GPT models
-- Google for Places API
-- OpenWeather for weather data
-
----
-
-**Built with ❤️ for demonstrating multi-agent GenAI systems**
