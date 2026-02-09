@@ -28,7 +28,7 @@ An intelligent multi-agent system that helps you plan the perfect date using AI-
 
 1. **Clone the repository**
    ```bash
-   cd /Users/jaybehera/Desktop/date_planner
+   git clone https://github.com/Joydev866/date_planner.git
    ```
 
 2. **Install dependencies**
