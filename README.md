@@ -1,245 +1,297 @@
 #  AI Date Planner Assistant
 
-A multi-agent GenAI system that plans complete dates using live APIs (Google Places & OpenWeather). Perfect for demonstrating real-world AI capabilities with practical applications.
+An intelligent multi-agent system that helps you plan the perfect date using AI-powered insights, real-time weather data, and restaurant recommendations.
 
-##  What It Does
+##  Features
 
-The AI Date Planner takes natural language requests and generates personalized date plans with:
-- **Restaurant recommendations** based on location, budget, and preferences
-- **Weather forecasts** to ensure optimal timing
-- **Budget-conscious suggestions** within your price range
-- **Contextual planning** (romantic, casual, cozy, etc.)
+- **Multi-Agent AI Architecture**: Coordinated system with Planner, Executor, and Verifier agents
+- **Smart Intent Extraction**: Natural language understanding to extract date preferences
+- **Real-time Restaurant Recommendations**: Powered by Google Places API (New v1)
+- **Weather-Aware Planning**: Integrates OpenWeather API for weather-based suggestions
+- **Budget-Conscious**: Filters recommendations based on your budget
+- **Input Validation**: Built-in guardrails to ensure safe and valid inputs
+- **Dual Interface**: CLI and beautiful Streamlit web interface
 
-### Example Usage
+---
 
-**Input:**
-```
-"Plan a romantic dinner date in Mumbai under ₹2500"
-```
+##  Quick Start
 
-**Output:**
-- Top 3-5 restaurant recommendations with ratings and addresses
-- Weather forecast for the evening
-- Budget validation
-- Suggested timing
-- Complete date plan summary
+### Prerequisites
 
-##  Multi-Agent Architecture
+- Python 3.8 or higher
+- API Keys for:
+  - OpenAI (via OpenRouter)
+  - Google Places API (New)
+  - OpenWeather API
 
-The system uses three specialized AI agents working in sequence:
+### Installation
 
-###  **Planner Agent**
-- Understands user intent using OpenAI GPT
-- Extracts structured data: city, budget, date type, timing
-- Outputs JSON with parameters for execution
+1. **Clone the repository**
+   ```bash
+   cd /Users/jaybehera/Desktop/date_planner
+   ```
 
-###  **Executor Agent**
-- Orchestrates API calls based on planner output
-- Fetches real-time data from:
-  - **Google Places API** (restaurants, ratings, prices)
-  - **OpenWeather API** (weather forecasts)
-- Collects and formats results
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-###  **Verifier Agent**
-- Validates recommendations against constraints
-- Filters inappropriate suggestions (e.g., outdoor venues during rain)
-- Uses AI to generate coherent, personalized date plans
-- Ensures budget compliance and weather suitability
+3. **Set up environment variables**
+   
+   Create a `.env` file in the project root with the following:
+   ```env
+   OPENAI_API_KEY=your_openrouter_api_key_here
+   GOOGLE_PLACES_API=your_google_places_api_key_here
+   OPEN_WEATHER_API=your_openweather_api_key_here
+   ```
 
-##  Tech Stack
+   See [`.env.example`](#environment-variables) below for details.
 
-- **Python 3.8+**
-- **OpenAI API** (GPT-4o-mini for cost-effectiveness)
-- **Google Places API** (restaurant search and details)
-- **OpenWeather API** (weather forecasts)
-- **Libraries:** `openai`, `requests`, `python-dotenv`
+### Running the Project
 
-##  Project Structure
-
-```
-genai-date-planner/
-│
-├── agents/
-│   ├── __init__.py
-│   ├── planner.py          # Intent extraction with OpenAI
-│   ├── executor.py         # API orchestration
-│   └── verifier.py         # Validation and plan generation
-│
-├── tools/
-│   ├── __init__.py
-│   ├── places_api.py       # Google Places integration
-│   └── weather_api.py      # OpenWeather integration
-│
-├── main.py                 # Main orchestration logic
-├── requirements.txt        # Python dependencies
-├── .env                    # API keys (DO NOT COMMIT)
-├── .env.example            # Template for environment variables
-└── README.md               # This file
-```
-
-##  Setup Instructions
-
-### 1. Clone or Download the Project
-
-```bash
-cd /path/to/date_planner
-```
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Configure API Keys
-
-You need three API keys. Copy `.env.example` to `.env` and add your keys:
-
-```bash
-cp .env.example .env
-```
-
-#### Get Your API Keys:
-
-**OpenAI API:**
-1. Visit [OpenAI Platform](https://platform.openai.com/api-keys)
-2. Create an account or sign in
-3. Generate a new API key
-4. Add to `.env`: `OPENAI_API_KEY=sk-...`
-
-**Google Places API (New):**
-1. Go to [Google Cloud Console](https://console.cloud.google.com/)
-2. Create a new project or select existing
-3. Enable "Places API (New)" 
-4. Create credentials (API Key)
-5. Add to `.env`: `GOOGLE_PLACES_API=AIza...`
-
-> **Note:** Make sure to enable "Places API (New)" not the legacy "Places API"
-
-**OpenWeather API:**
-1. Visit [OpenWeather](https://openweathermap.org/api)
-2. Sign up for free account
-3. Get your API key from dashboard
-4. Add to `.env`: `OPEN_WEATHER_API=...`
-
-### 4. Run the Application
-
-**Option 1: Command Line Interface (CLI)**
-```bash
-python3 main.py
-```
-
-**Option 2: Web Interface (Streamlit)**
+**Option 1: Streamlit Web Interface (Recommended)**
 ```bash
 streamlit run app.py
 ```
+Then open your browser to `http://localhost:8501`
 
-The web interface will open automatically in your browser at `http://localhost:8501`
+**Option 2: Command Line Interface**
+```bash
+python main.py
+```
 
-> **Recommended:** Use the Streamlit web interface for a better visual experience with interactive components and real-time updates!
+---
+
+##  Environment Variables
+
+Create a `.env` file with these required variables:
+
+```env
+# OpenAI API Key (via OpenRouter for cost-effective access)
+# Get yours at: https://openrouter.ai/keys
+OPENAI_API_KEY=sk-or-v1-xxxxxxxxxxxxxxxxxxxxx
+
+# Google Places API Key (New API v1)
+# Get yours at: https://console.cloud.google.com/apis/credentials
+# Enable: Places API (New)
+GOOGLE_PLACES_API=AIzaSyXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+# OpenWeather API Key
+# Get yours at: https://openweathermap.org/api
+OPEN_WEATHER_API=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+### Getting API Keys
+
+1. **OpenRouter (OpenAI)**: Sign up at [openrouter.ai](https://openrouter.ai) and create an API key
+2. **Google Places API**: 
+   - Go to [Google Cloud Console](https://console.cloud.google.com)
+   - Enable "Places API (New)" 
+   - Create credentials (API Key)
+3. **OpenWeather**: Sign up at [openweathermap.org](https://openweathermap.org/api) and get a free API key
+
+---
+
+##  Architecture
+
+The system uses a **multi-agent architecture** with three specialized agents:
+
+```
+User Input → Planner Agent → Executor Agent → Verifier Agent → Final Plan
+```
+
+### Agent Breakdown
+
+#### 1. **Planner Agent** (`agents/planner.py`)
+- **Role**: Intent extraction and understanding
+- **Technology**: OpenAI GPT (via OpenRouter)
+- **Responsibilities**:
+  - Parses natural language date requests
+  - Extracts structured data (city, budget, date type, timing)
+  - Determines what data needs to be fetched
+- **Output**: Structured plan dictionary
+
+#### 2. **Executor Agent** (`agents/executor.py`)
+- **Role**: Data collection and API orchestration
+- **Technology**: Coordinates external API calls
+- **Responsibilities**:
+  - Calls Google Places API for restaurant recommendations
+  - Fetches weather data from OpenWeather API
+  - Handles API errors gracefully
+- **Output**: Raw data from external services
+
+#### 3. **Verifier Agent** (`agents/verifier.py`)
+- **Role**: Validation and plan generation
+- **Technology**: OpenAI GPT for natural language generation
+- **Responsibilities**:
+  - Validates data quality and completeness
+  - Filters restaurants by budget and rating
+  - Generates personalized date plan narrative
+  - Provides weather-aware recommendations
+- **Output**: Final formatted date plan
+
+### Tools
+
+#### **Google Places API Tool** (`tools/places_api.py`)
+- Uses the **new Google Places API v1** with `searchText` endpoint
+- Features:
+  - Text-based search for restaurants
+  - Price level filtering
+  - Location-based search with 5km radius
+  - Supports 20+ major Indian cities
+  - Returns top 5 rated restaurants
+
+#### **Weather API Tool** (`tools/weather_api.py`)
+- Integrates OpenWeather API
+- Features:
+  - Current weather conditions
+  - 5-day forecast
+  - Rain probability calculation
+  - Indoor/outdoor suitability assessment
+
+### Input Validation (`validators.py`)
+- **Guardrails** to ensure safe inputs:
+  - Budget limits (₹100 - ₹50,000)
+  - Supported cities validation
+  - Date and Time validation 
+---
+
+##  Integrated APIs
+
+| API | Purpose | Version | Documentation |
+|-----|---------|---------|---------------|
+| **OpenAI** (via OpenRouter) | Natural language processing, intent extraction, plan generation | stepfun/step-3.5-flash:free| [openrouter.ai](https://openrouter.ai) |
+| **Google Places API** | Restaurant search and recommendations | **New API v1** (`searchText`) | [developers.google.com/maps/documentation/places/web-service/search-text](https://developers.google.com/maps/documentation/places/web-service/search-text) |
+| **OpenWeather API** | Weather forecasts and current conditions | 2.5 | [openweathermap.org/api](https://openweathermap.org/api) |
+
+---
 
 ##  Example Prompts
 
 Try these prompts to test the system:
 
-1. **"Plan a romantic dinner date in Mumbai under ₹2500"**
-   - Tests budget constraints and romantic venue filtering
+1. **Budget-Conscious Romantic Date**
+   ```
+   Plan a romantic dinner date in Mumbai under ₹2500
+   ```
 
-2. **"Suggest a cozy café date in Delhi this weekend"**
-   - Tests timing parsing and café-specific search
+2. **Casual Weekend Date**
+   ```
+   Suggest a cozy café date in Delhi this weekend
+   ```
 
-3. **"Plan an indoor date in Bangalore if it rains"**
-   - Tests weather integration and indoor filtering
+3. **Weather-Aware Planning**
+   ```
+   Plan an indoor date in Bangalore if it rains
+   ```
 
-4. **"Find a budget-friendly first date in Pune"**
-   - Tests budget optimization and casual venue search
+4. **First Date on a Budget**
+   ```
+   Find a budget-friendly first date in Pune under ₹1500
+   ```
 
-##  Required Third-Party APIs (Easy & Stable)
+5. **Specific Date Type**
+   ```
+   Recommend a casual lunch date in Hyderabad tomorrow with outdoor seating
+   ```
 
-** Google Places API (New)**
+---
 
-Used for:
-- Restaurant search using searchText endpoint
-- Ratings and reviews
-- Price level information
-- Current opening hours
-
-** OpenWeather API**
-
-Used for:
-- Weather forecast
-- Rain / temperature check
-
-Both are:
-- Free tier available
-- Easy to integrate
-- Reliable
-
-## Execution Flow
+## 📁 Project Structure
 
 ```
-User Input
-    ↓
-┌─────────────────┐
-│ Planner Agent   │ → Extracts: city, budget, date_type, timing
-└─────────────────┘
-    ↓
-┌─────────────────┐
-│ Executor Agent  │ → Calls: Google Places API + OpenWeather API
-└─────────────────┘
-    ↓
-┌─────────────────┐
-│ Verifier Agent  │ → Validates, filters, generates final plan
-└─────────────────┘
-    ↓
-Final Date Plan
+date_planner/
+├── agents/
+│   ├── __init__.py
+│   ├── planner.py          # Intent extraction agent
+│   ├── executor.py         # API orchestration agent
+│   └── verifier.py         # Validation and plan generation agent
+├── tools/
+│   ├── __init__.py
+│   ├── places_api.py       # Google Places API integration
+│   └── weather_api.py      # OpenWeather API integration
+├── validators.py           # Input validation and guardrails
+├── main.py                 # CLI entry point
+├── app.py                  # Streamlit web interface
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables (create this)
+├── GUARDRAILS.md          # Security and validation documentation
+└── README.md              # This file
 ```
 
-##  Features Checklist
+---
 
--  **Multi-agent architecture** (Planner, Executor, Verifier)
--  **Tool calling** (Google Places API, OpenWeather API)
--  **Real-time data** (live restaurant and weather info)
--  **Natural language processing** (OpenAI GPT)
--  **Budget validation** (filters by price level)
--  **Weather-aware planning** (indoor/outdoor recommendations)
--  **Structured outputs** (JSON for agent communication)
--  **Error handling** (graceful degradation)
--  **User-friendly interface** (clear console output)
+##  Known Limitations & Tradeoffs
 
-##  Why This Project?
+### Limitations
 
-This project demonstrates:
+1. **Geographic Coverage**
+   - Currently optimized for **20+ major Indian cities**
+   - Coordinates are approximate city centers
 
-1. **Multi-agent systems** - Clear separation of concerns
-2. **API integration** - Real-world data from multiple sources
-3. **Practical AI application** - Solves a real problem
-4. **Domain relevance** - Perfect for dating/social apps
-5. **Production-ready patterns** - Error handling, validation, modularity
+2. **Weather Forecast Accuracy**
+   - Free tier OpenWeather API provides 5-day forecasts
+   - "This weekend" timing uses approximate dates
+   - Weather predictions become less accurate beyond 3 days
 
-##  Security Notes
+3. **API Rate Limits**
+   - OpenRouter: Depends on your plan
+   - Google Places API: 1000 requests/month (free tier)
+   - OpenWeather API: 1000 requests/day (free tier)
 
-- **Never commit `.env`** - Add to `.gitignore`
-- **Use environment variables** - Keep API keys secure
-- **Rotate keys regularly** - Especially for production use
-- **Monitor API usage** - Set up billing alerts
+4. **Price Level Accuracy**
+   - Google Places price levels are approximate
+   - Budget filtering may not be 100% accurate
+   - Some restaurants don't have price data
 
-##  Troubleshooting
+5. **Real-time Data**
+   - Restaurant opening hours may be outdated
+   - No real-time table availability
+   - No reservation integration
 
-**"Error initializing agents"**
-- Check that all API keys are set in `.env`
-- Verify API keys are valid and active
+### Tradeoffs
 
-**"No restaurants found"**
-- Try a different city or increase budget
-- Check Google Places API quota
+| Decision | Benefit | Tradeoff |
+|----------|---------|----------|
+| **OpenRouter instead of direct OpenAI** | Cost-effective, multiple model options | Extra API layer, slight latency |
+| **New Google Places API v1** | Better search quality, modern API | Limited documentation, fewer examples |
+| **Multi-agent architecture** | Modular, testable, clear separation of concerns | More complex than monolithic approach |
+| **Free-tier APIs** | No cost to run | Rate limits, reduced features |
+| **Hardcoded city coordinates** | Fast, no geocoding API needed | Limited to predefined cities |
+| **Top 5 restaurant limit** | Focused recommendations, faster responses | May miss some good options |
 
-**"Weather data unavailable"**
-- Verify OpenWeather API key
-- Check city name spelling
+### Future Improvements
 
-**Import errors**
-- Run `pip install -r requirements.txt`
-- Ensure Python 3.8+ is installed
+- [ ] Add geocoding API for any city worldwide
+- [ ] Integrate reservation systems (OpenTable, Zomato)
+- [ ] Add more date activity types (movies, museums, parks)
+- [ ] Implement user feedback loop for better recommendations
+- [ ] Add cost estimation for complete date plan
+- [ ] Support multiple languages
+- [ ] Add date itinerary with timing suggestions
 
+---
+
+##  Security & Validation
+
+The system includes comprehensive input validation (see [`GUARDRAILS.md`](GUARDRAILS.md)):
+
+- Budget range validation (₹100 - ₹50,000)
+- City whitelist (20+ supported cities)
+- SQL injection prevention
+- XSS attack prevention
+- API key protection (never logged or exposed)
+
+---
+
+##  Testing
+
+**Manual Testing:**
+```bash
+# Test CLI
+python main.py
+
+# Test Web Interface
+streamlit run app.py
+```
 
